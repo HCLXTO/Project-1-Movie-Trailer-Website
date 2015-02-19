@@ -1,0 +1,238 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>Henrique's favorite movies</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+            height: 100%
+        }
+        .movie-tile .back {
+            display: none;
+            width: 80%;
+            height: 80%;
+            background-color: #EEE;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-bottom: 20%;
+            padding-bottom: 10%;
+            padding-left:3%;
+            padding-top: 20px;
+        }
+        .movie-tile .back .info{
+            float: left;
+        }
+        .movie-tile:hover {
+            cursor: pointer;
+        }
+        .movie-tile:hover >.back{
+            display:block;
+        }
+        .movie-tile:hover >.front{
+            display:none;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Henrique's favorite movies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="KYz2wyBy3kc" data-toggle="modal" data-target="#trailer">
+    <div class="front">
+      <img src="http://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" width="220" height="342">
+      <h2>Toy Story</h2>
+    </div>
+    <div class="back">
+      <h2>Toy Story</h2>
+      <div class="text-left">
+        <H4>Story:</H4>
+        <p>A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.</p>
+        <H4>Actors:</H4>
+        <p>Woody, Buzz, Andy, Molly</p>
+        <H4>Director:</H4>
+        <p>John Lasseter</p>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="5PSNL1qE6VY" data-toggle="modal" data-target="#trailer">
+    <div class="front">
+      <img src="http://upload.wikimedia.org/wikipedia/pt/thumb/b/b0/Avatar-Teaser-Poster.jpg/250px-Avatar-Teaser-Poster.jpg" width="220" height="342">
+      <h2>Avatar</h2>
+    </div>
+    <div class="back">
+      <h2>Avatar</h2>
+      <div class="text-left">
+        <H4>Story:</H4>
+        <p>A Paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home...</p>
+        <H4>Actors:</H4>
+        <p>Sam Worthington, Zoe Saldana, Sigourney Weaver</p>
+        <H4>Director:</H4>
+        <p>James Cameron</p>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="XLdq-1p8hfs" data-toggle="modal" data-target="#trailer">
+    <div class="front">
+      <img src="http://wwws.br.warnerbros.com/ohomemquedesafiouodiabo/_i/poster.jpg" width="220" height="342">
+      <h2>O homem que desafiou o diabo</h2>
+    </div>
+    <div class="back">
+      <h2>O homem que desafiou o diabo</h2>
+      <div class="text-left">
+        <H4>Story:</H4>
+        <p>The story of a man that chalanges the devil:In the Northeastern of Brazil, the wolf traveling salesman of fabric Jose Araujo arrives at Jardim dos Caiacos and succeeds in selling his merchandise to the Turkish Turco.</p>
+        <H4>Actors:</H4>
+        <p>Marcos Palmeira, Flavia Alessandra, Livia Falcao</p>
+        <H4>Director:</H4>
+        <p>Moacyr Goes</p>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="7pQQHnqBa2E" data-toggle="modal" data-target="#trailer">
+    <div class="front">
+      <img src="https://www.movieposter.com/posters/archive/main/117/MPW-58950" width="220" height="342">
+      <h2>Scarface</h2>
+    </div>
+    <div class="back">
+      <h2>Scarface</h2>
+      <div class="text-left">
+        <H4>Story:</H4>
+        <p>In 1980 Miami, a determined Cuban immigrant takes over a drug cartel while succumbing to greed.</p>
+        <H4>Actors:</H4>
+        <p>Al Pacino, Michelle Pfeiffer, Steven Bauer</p>
+        <H4>Director:</H4>
+        <p>Brian De Palma</p>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ZOocUDuffdI" data-toggle="modal" data-target="#trailer">
+    <div class="front">
+      <img src="http://ia.media-imdb.com/images/M/MV5BMTk5NzE0MDQyNl5BMl5BanBnXkFtZTcwNzk4Mjk3OA@@._V1_SY317_CR2,0,214,317_AL_.jpg" width="220" height="342">
+      <h2>Snatch</h2>
+    </div>
+    <div class="back">
+      <h2>Snatch</h2>
+      <div class="text-left">
+        <H4>Story:</H4>
+        <p>Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers, and supposedly Jewish jewelers fight to track down a priceless stolen diamond.</p>
+        <H4>Actors:</H4>
+        <p>Jason Statham, Brad Pitt, Benicio Del Toro</p>
+        <H4>Director:</H4>
+        <p>Guy Ritchie</p>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ROOK2BBIwpA" data-toggle="modal" data-target="#trailer">
+    <div class="front">
+      <img src="http://3.bp.blogspot.com/-O_MdVlRTaZ4/Taug-ONOs7I/AAAAAAAAAY8/BW4p5IVFR2c/s1600/vips-poster.jpg" width="220" height="342">
+      <h2>VIPs</h2>
+    </div>
+    <div class="back">
+      <h2>VIPs</h2>
+      <div class="text-left">
+        <H4>Story:</H4>
+        <p>A compulsive liar making his way up on society</p>
+        <H4>Actors:</H4>
+        <p>Wagner Moura, Gisele Froes, Emiliano Ruschel</p>
+        <H4>Director:</H4>
+        <p>Toniko Melo</p>
+      </div>
+    </div>
+</div>
+
+    </div>
+  </body>
+</html>
